@@ -107,9 +107,12 @@ const Bebop = ({tik}) => {
       .add(
         {
           targets: '.line',
-          width: window.matchMedia(`(max-width: 768px)`).matches
-            ? `90%`
-            : `73%`,
+          width:
+            window.matchMedia(`(max-width: 768px)`).matches &&
+            !window.matchMedia(`(max-width: 768px) and (orientation: portrait)`)
+              .matches
+              ? `90%`
+              : `73%`,
           opacity: 1,
           easing: 'easeOutExpo',
         },
@@ -135,6 +138,9 @@ const Bebop = ({tik}) => {
         @media (max-width: 768px) {
           max-width: 100%;
         }
+        @media (max-width: 768px) and (orientation: portrait) {
+          max-width: 30rem;
+        }
         display: flex;
         justify-content: center;
         align-items: center;
@@ -150,6 +156,9 @@ const Bebop = ({tik}) => {
           left: 4rem;
           @media (max-width: 768px) {
             left: 1rem;
+          }
+          @media (max-width: 768px) and (orientation: portrait) {
+            left: 4rem;
           }
           bottom: 10rem;
           height: 3px;
